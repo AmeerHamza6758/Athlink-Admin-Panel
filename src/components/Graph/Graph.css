@@ -1,0 +1,41 @@
+.graph{
+    position: absolute !important;
+}
+.graph-data-container{
+    justify-content: center;
+}
+.graph-data{
+    flex-direction: row;
+    
+}
+.graph-main-container{
+    height: 12rem ;
+    width: 12rem  ;
+}
+.graph1-container{
+    width: 7rem ;
+}
+
+.graph2-container{
+    width: 10rem ;
+}
+
+@media (min-width:1615px) {
+     .graph-data{
+        padding: 1rem;
+        flex-direction: column;        
+    }
+    .graph-data-container{
+        justify-content: space-around;
+    }
+        .graph-main-container{
+            height: 14rem ;
+            width: 14rem ;
+        }
+        .graph1-container{
+            width: 10rem !important;
+        }
+        .graph2-container{
+            width: 13rem !important;
+        }
+    }
