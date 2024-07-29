@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { dummyMessages } from "../../../helpers/dummydata";
+import { dummyEventsData } from "../../../helpers/dummydata";
 import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
@@ -15,17 +15,23 @@ const UpCommingEvent = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
               <tr>
+              <th
+                  scope="col"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                >
+                  Sr_no
+                </th>
                 <th
                   scope="col"
                   className="py-3 px-6 text-start text-base font-bold text-secondaryText"
                 >
-                  Image
+                  Title
                 </th>
                 <th
                   scope="col"
                   className={`px-6 py-3 text-start text-base font-bold text-secondaryText`}
                 >
-                  Title
+                  Image
                 </th>
                 <th
                   scope="col"
@@ -41,25 +47,30 @@ const UpCommingEvent = () => {
                 </th>
                 <th
                   scope="col"
-                  className={`pl-8 py-3 text-center text-base font-bold text-secondaryText`}
+                  className={`py-3 pr-24 text-end text-base font-bold text-secondaryText`}
                 >
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyMessages.map((item, index) => (
+              {dummyEventsData.map((item, index) => (
                 <tr key={index}>
                   <td className="px-6 py-8 whitespace-nowrap text-sm font-normal text-darkGreyText">
-                    {item.name}
+                    {item.s_no}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
-                    {item.username}
+                    {item.title}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
-                    {item.phone}
+                    <img className="w-12 h-12 rounded-lg" src={item.image} alt="Up comming Events" />
                   </td>
-
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.date}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.location}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-normal text-darkGreyText flex flex-row gap-3 items-center justify-end">
                     <button
                       className="h-9 w-9"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images/logoDark.svg'
 import logoDark from '../../assets/images/logohorizontal.svg'
 import Textinput from '../../components/inputs/Textinput';
 import PrimaryButton from '../../components/buttons/PrimaryButton';
@@ -17,8 +17,8 @@ const Login = () => {
     }
     return (
         <div className='h-screen w-full flex flex-row'>
-            <div className={`bg-green-500 h-full w-[50%] xl:w-[50%] flex items-center justify-center `}
-                style={{ backgroundImage: `url(${logoBg})`,backgroundSize:'contain', backgroundRepeat:'no-repeat', backgroundPosition: "center" }}
+            <div className={`h-full w-[50%] xl:w-[50%] flex items-center justify-center`}
+                style={{ backgroundImage: `url(${logoBg})`,backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition: "center" }}
             >
                 <div className='w-full h-full flex items-center justify-center'>
                     <img src={logo} alt='Athlink' className='w-[261px] h-[155px]' />

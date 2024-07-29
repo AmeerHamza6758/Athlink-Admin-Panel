@@ -7,7 +7,8 @@ module.exports = {
         'primary': "#E2383A",
         'secondary': "#132945",
         'darkGrey':'#808D9E',
-        'lightGrey':"#E2E8F0"
+        'lightGrey':"#E2E8F0",
+        'primaryHover':'#C62839'
       },
      colors:{
       'primaryText': "#E2383A",

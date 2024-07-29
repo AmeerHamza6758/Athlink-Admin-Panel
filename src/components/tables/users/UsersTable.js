@@ -1,5 +1,5 @@
 import React from "react";
-import { dummyMessages } from "../../../helpers/dummydata";
+import { dummyUserData } from "../../../helpers/dummydata";
 import { useNavigate } from "react-router-dom";
 import viewIcon from "../../../assets/images/eyeIcon.png";
 const UsersTable = () => {
@@ -45,7 +45,7 @@ const UsersTable = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0]">
-                {dummyMessages.map((item, index) => (
+                {dummyUserData.map((item, index) => (
                   <tr key={index}>
                     <td className="px-6 py-8 whitespace-nowrap text-sm font-normal text-darkGreyText">
                       {item.name}
@@ -54,10 +54,10 @@ const UsersTable = () => {
                       {item.email}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
-                      {item.phone}
+                      {item.country}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
-                      {item.name}
+                      {item.gender}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-normal text-darkGreyText flex flex-row gap-3 items-center justify-center">
                       <button

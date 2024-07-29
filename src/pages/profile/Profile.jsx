@@ -25,7 +25,7 @@ export const Profile = () => {
   return (
     <div className="w-full h-auto flex justify-center items-center">
       <div className="w-11/12 h-auto pt-10 flex flex-col gap-4 pb-11 2xl:b-5">
-        <div className="bg-white w-full min-h-[72vh] rounded-lg flex flex-col px-5 py-8 gap-4">
+        <div className="bg-white w-full min-h-[62vh] rounded-lg flex flex-col px-5 py-8 gap-4">
           <div className="w-auto px-12">
             <div className="w-auto ps-1.5">
               <h1 className="font-bold text-2xl my-3">Profile Section</h1>
@@ -33,8 +33,8 @@ export const Profile = () => {
                 Welcome! Update your details here!
               </p>
               <div className="flex flex-wrap items-center justify-between gap-3 pt-8">
-                <div className="flex flex-col items-center gap-y-5 w-1/4">
-                  <div className="border border-[#E4774F] rounded-full p-1 w-44 h-44 relative">
+                <div className="flex flex-col items-center gap-y-5 w-1/6">
+                  <div className="border border-[#E4774F] rounded-full p-1 w-48 h-48 relative">
                     <input
                       onChange={handleEditFileChange}
                       className="w-full rounded-lg border px-3 py-2 text-sm outline-none hidden"
@@ -64,7 +64,7 @@ export const Profile = () => {
                   </p>
                 </div>
 
-                <div className="w-2/4">
+                <div className="w-4/6">
                   <div className="flex flex-col gap-y-7 mb-5">
                     <div className="flex flex-row gap-4 items-center">
                       <p className="font-normal text-lg text-black">Name</p>

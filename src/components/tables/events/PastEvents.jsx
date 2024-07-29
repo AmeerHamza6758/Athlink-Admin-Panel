@@ -3,8 +3,9 @@ import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
 import viewIcon from "../../../assets/images/eyeIcon.png";
 import { useNavigate } from "react-router-dom";
-import { dummyMessages } from "../../../helpers/dummydata";
+import { dummyEventsData } from "../../../helpers/dummydata";
 import Pagination from "../../pagination/Pagination";
+
 const PastEvents = () => {
   const navigate = useNavigate();
   return (
@@ -18,13 +19,19 @@ const PastEvents = () => {
                   scope="col"
                   className="py-3 px-6 text-start text-base font-bold text-secondaryText"
                 >
-                  Image
+                  Sr_no
                 </th>
                 <th
                   scope="col"
                   className="py-3 px-6 text-start text-base font-bold text-secondaryText"
                 >
                   Title
+                </th>
+                <th
+                  scope="col"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                >
+                  Image
                 </th>
                 <th
                   scope="col"
@@ -40,23 +47,29 @@ const PastEvents = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3 text-center text-base font-bold text-secondaryText"
+                  className="py-3 text-end pr-24 text-base font-bold text-secondaryText"
                 >
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyMessages.map((items, index) => (
+              {dummyEventsData.map((items, index) => (
                 <tr key={index}>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.name}
+                    {items.s_no}
                   </td>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.email}
+                    {items.title}
                   </td>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.phone}
+                    <img className="w-12 h-12 rounded-lg" src={items.image} alt="Events" />
+                  </td>
+                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
+                    {items.date}
+                  </td>
+                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
+                    {items.location}
                   </td>
                   <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center justify-end">
                     <button className="h-9 w-9">

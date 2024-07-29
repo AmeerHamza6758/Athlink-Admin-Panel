@@ -36,7 +36,7 @@ td{
 }
 
 .p-custom-scrollbar-8::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
+  /* background-color: #C62839; */
   border-radius: 200px;
 }
 

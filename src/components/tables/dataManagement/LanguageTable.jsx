@@ -1,5 +1,5 @@
 import React from 'react'
-import { dummyMessages } from "../../../helpers/dummydata";
+import { dummyLanguageData } from "../../../helpers/dummydata";
 import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
@@ -34,25 +34,25 @@ const LanguageTable = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3 text-start px-6 text-base font-bold text-secondaryText"
+                  className="py-3 text-end pr-24 text-base font-bold text-secondaryText"
                 >
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyMessages.map((items, index) => (
+              {dummyLanguageData.map((items, index) => (
                 <tr key={index}>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
                     {items.s_no}
                   </td>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.name}
+                    {items.langugaeName}
                   </td>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.image}
+                    {items.langugaeCode}
                   </td>
-                  <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center">
+                  <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center justify-end">
                     <button className="h-9 w-9">
                       <img src={deleteIcon} alt="Delete Icon" />
                     </button>

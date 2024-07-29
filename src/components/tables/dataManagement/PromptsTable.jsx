@@ -1,11 +1,12 @@
 import React from "react";
-import { dummyMessages } from "../../../helpers/dummydata";
+import { dummyPromptData  } from "../../../helpers/dummydata";
 import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
 import viewIcon from "../../../assets/images/eyeIcon.png";
 const PromptsTable = () => {
   const navigate = useNavigate();
+
   return (
     <div className="flex flex-col">
       <div className="p-1.5 min-w-full inline-block align-middle">
@@ -27,22 +28,22 @@ const PromptsTable = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3 text-start px-6 text-base font-bold text-secondaryText"
+                  className="py-3 text-end pr-24 text-base font-bold text-secondaryText"
                 >
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyMessages.map((items, index) => (
+              {dummyPromptData .map((items, index) => (
                 <tr key={index}>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.s_no}
+                    {items.sr_no}
                   </td>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.message}
+                    {items.promptQuestion}
                   </td>
-                  <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center">
+                  <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center justify-end">
                     <button className="h-9 w-9">
                       <img src={deleteIcon} alt="Delete Icon" />
                     </button>
@@ -57,7 +58,7 @@ const PromptsTable = () => {
                     <button
                       className="h-9 w-9"
                       onClick={() => {
-                        navigate("/");
+                        navigate("/admin/prompt");
                       }}
                     >
                       <img src={viewIcon} alt="view Icon" />

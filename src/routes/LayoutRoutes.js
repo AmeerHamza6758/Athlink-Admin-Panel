@@ -31,7 +31,6 @@ const LayoutRoutes = () => {
           <Route path="/datamanagemet/language" element={<AdminLanguage/>}/>
           <Route path="/datamanagemet/countries" element={<AdminCountries/>}/>
           <Route path="/events/add-event" element={<AddEvents/>}/>
-
         </Route>
       </Routes>
     </Layout>

@@ -21,12 +21,12 @@ const Events = () => {
             placeholder="Search by Name"
           />
           <button
-            className={`bg-primary text-md text-white rounded-full p-1.5 w-1/6 h-10 font-bold`}
+            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
           >
             Search
           </button>
           <button
-            className={`bg-primary text-md text-white rounded-full p-1.5 w-2/6 h-10 font-bold`}
+            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
             onClick={handleAddEvents}
           >
             Create New Event
@@ -34,13 +34,13 @@ const Events = () => {
         </div>
         <div className="flex item-center gap-8 pt-6">
           <h1
-            className="text-md font-bold bg-darkGrey text-white p-2 rounded-lg cursor-pointer"
+            className="text-md font-bold bg-darkGrey text-white hover:text-secondaryText transition duration-500 ease p-2 rounded-lg cursor-pointer"
             onClick={() => setViewEvent(false)}
           >
             Up Coming Events
           </h1>
           <h1
-            className="text-md font-bold text-md font-bold bg-darkGrey text-white p-2 rounded-lg cursor-pointer"
+            className="text-md font-bold text-md font-bold bg-darkGrey text-white hover:text-secondaryText transition duration-500 ease p-2 rounded-lg cursor-pointer"
             onClick={() => setViewEvent(true)}
           >
             Past Events

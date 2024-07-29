@@ -1,8 +1,18 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import Pagination from "../../../components/pagination/Pagination";
 import CountriesTable from "../../../components/tables/dataManagement/CountriesTable";
-
+import CustomModal from "../../../components/modals/customModal/CustomModal";
+import CountryForm from "../../../components/modals/dataManagementModals/countries/CountryForm";
+import useModal from "../../../helpers/hooks/useModal";
 const AdminCountries = () => {
+  const { isOpen, openModal, closeModal } = useModal();
+  const [countryTitle, setCountryTitle] = useState("Add New Country");
+
+  const handleFormSubmit = (data) => {
+    // Handle form submission
+    console.log(data);
+    closeModal();
+  };
   return (
     <div className="w-full h-auto flex justify-center items-center">
       <div className="w-11/12 pt-10 flex flex-col gap-4">
@@ -13,12 +23,13 @@ const AdminCountries = () => {
             placeholder="Search by Name"
           />
           <button
-            className={`bg-primary text-md text-white rounded-full p-1.5 w-1/6 h-10 font-bold`}
+            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
           >
             Search
           </button>
           <button
-            className={`bg-primary text-md text-white rounded-full p-1.5 w-2/6 h-10 font-bold`}
+            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
+            onClick={openModal}
           >
             Add new Country
           </button>
@@ -26,10 +37,16 @@ const AdminCountries = () => {
         <div className="bg-white w-full rounded-lg flex flex-col p-5 gap-2">
           <CountriesTable />
         </div>
-        <Fragment>
-          <Pagination />
-        </Fragment>
+        <Pagination />
       </div>
+      <CustomModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        onSubmit={handleFormSubmit}
+        title={countryTitle}
+      >
+        <CountryForm />
+      </CustomModal>
     </div>
   );
 };

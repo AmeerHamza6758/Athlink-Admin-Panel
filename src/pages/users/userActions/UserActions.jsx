@@ -5,8 +5,9 @@ import profileImage from "../../../assets/images/userImage.jpeg";
 import userIcon from "../../../assets/images/User.svg";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
-
+import { dummyUserData } from "../../../helpers/dummydata";
 export default function UserActions() {
+  const [userData, setuserData] = useState();
   const iconColor = "#808D9E";
   const navigate = useNavigate();
   const [userImage, setUserImage] = useState(profileImage);
@@ -34,7 +35,7 @@ export default function UserActions() {
             <div className="flex flex-col gap-y-3 ">
               <div>
                 <p className="text-[40px] text-secondaryText font-semibold">
-                  Ameer Hamza
+                  John_Doe
                 </p>
               </div>
 
@@ -284,29 +285,43 @@ export default function UserActions() {
               Images
             </p>
             <div className="w-full bg-white p-5 rounded relative h-38">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="relative w-full h-32">
+              <div className="grid grid-cols-6 gap-4">
+                <div className="relative w-48 h-48">
                   <img
                     src={profileImage}
                     alt={`User uploaded `}
                     className="w-full h-full object-cover rounded"
                   />
                 </div>
-                <div className="relative w-full h-32">
+                <div className="relative w-48 h-48">
                   <img
                     src={profileImage}
                     alt={`User uploaded `}
                     className="w-full h-full object-cover rounded"
                   />
                 </div>
-                <div className="relative w-full h-32">
+                <div className="relative w-48 h-48">
                   <img
                     src={profileImage}
                     alt={`User uploaded `}
                     className="w-full h-full object-cover rounded"
                   />
                 </div>
-                <div className="relative w-full h-32">
+                <div className="relative w-48 h-48">
+                  <img
+                    src={profileImage}
+                    alt={`User uploaded `}
+                    className="w-full h-full object-cover rounded"
+                  />
+                </div>
+                <div className="relative w-48 h-48">
+                  <img
+                    src={profileImage}
+                    alt={`User uploaded `}
+                    className="w-full h-full object-cover rounded"
+                  />
+                </div>
+                <div className="relative w-48 h-48">
                   <img
                     src={profileImage}
                     alt={`User uploaded `}
@@ -320,23 +335,4 @@ export default function UserActions() {
       </div>
     </div>
   );
-}
-
-{
-  /* <div>
-<p className="text-secondaryText font-semibold text-lg pb-2">Images</p>
-<div className="w-full bg-white p-5 rounded relative h-38">
-  <div className="grid grid-cols-3 gap-4">
-    {images.slice(0, 6).map((image, index) => (
-      <div key={index} className="relative w-full h-32">
-        <img
-          src={image}
-          alt={`User uploaded ${index + 1}`}
-          className="w-full h-full object-cover rounded"
-        />
-      </div>
-    ))}
-  </div>
-</div>
-</div> */
 }
