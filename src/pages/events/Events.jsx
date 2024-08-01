@@ -1,12 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import UpCommingEvent from "../../components/tables/events/UpComingEvent";
-import Pagination from "../../components/pagination/Pagination";
 import PastEvents from "../../components/tables/events/PastEvents";
 import { useNavigate } from "react-router-dom";
+import { IoSearch } from "react-icons/io5";
+import { MdAdd } from "react-icons/md";
 
 const Events = () => {
-  const [viewEvent, setViewEvent] = useState(false);
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory]= useState('upcoming event')
   const handleAddEvents = () => {
     navigate("/events/add-event");
   };
@@ -20,37 +21,55 @@ const Events = () => {
             className="border border-[#E2E8F0] text-sm  outline-none p-1.5 rounded-md w-11/12"
             placeholder="Search by Name"
           />
-          <button
-            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
-          >
-            Search
-          </button>
-          <button
-            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
+          <div className="flex items-center gap-1 justify-center bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold">
+            <IoSearch size={20} />
+            <button
+              className={`primary text-base text-white text-nowrap font-semibold`}
+            >
+              Search
+            </button>
+          </div>
+          <div
+            className="flex items-center gap-1 justify-center bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold"
             onClick={handleAddEvents}
           >
-            Create New Event
-          </button>
+            <MdAdd size={20} />
+            <button
+              className={`primary text-base text-white text-nowrap font-semibold`}
+            >
+              Add Event
+            </button>
+          </div>
         </div>
         <div className="flex item-center gap-8 pt-6">
           <h1
-            className="text-md font-bold bg-darkGrey text-white hover:text-secondaryText transition duration-500 ease p-2 rounded-lg cursor-pointer"
-            onClick={() => setViewEvent(false)}
+           onClick={() => setSelectedCategory("upcoming event")}
+           className={`w-52 p-2 rounded-lg text-base font-semibold text-center cursor-pointer transition-colors duration-500 ease ${
+             selectedCategory === "upcoming event"
+               ? "bg-primary text-white font-bold"
+               : "bg-secondary hover:bg-lightGrey text-white hover:text-black"
+           }`}
           >
             Up Coming Events
           </h1>
           <h1
-            className="text-md font-bold text-md font-bold bg-darkGrey text-white hover:text-secondaryText transition duration-500 ease p-2 rounded-lg cursor-pointer"
-            onClick={() => setViewEvent(true)}
+           onClick={() => setSelectedCategory("past event")}
+           className={`w-52 p-2 rounded-lg text-base font-semibold text-center cursor-pointer transition-colors duration-500 ease ${
+             selectedCategory === "past event"
+               ? "bg-primary text-white font-bold"
+               : "bg-secondary hover:bg-lightGrey text-white hover:text-black"
+           }`}
           >
             Past Events
           </h1>
         </div>
-        {viewEvent ? (
+        {selectedCategory ==="past event" && (
           <div>
             <PastEvents />
           </div>
-        ) : (
+        ) }
+        
+       { selectedCategory ==="upcoming event" &&  (
           <div>
             <UpCommingEvent />
           </div>

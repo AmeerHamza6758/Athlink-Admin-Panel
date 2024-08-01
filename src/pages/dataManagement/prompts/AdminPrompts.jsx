@@ -1,19 +1,39 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useModal from "../../../helpers/hooks/useModal";
 import CustomModal from "../../../components/modals/customModal/CustomModal";
 import PromptForm from "../../../components/modals/dataManagementModals/Prompt/CreatePromptForm";
 import PromptsTable from "../../../components/tables/dataManagement/PromptsTable";
 import Pagination from "../../../components/pagination/Pagination";
+import { MdAdd } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
+import { dummyPromptData } from "../../../helpers/dummydata";
 
 const AdminPrompts = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const [formTitle, setFormTitle] = useState("Create New Prompt");
+  const [initialData, setInitialData] = useState(null);
 
-  const handleFormSubmit = (data) => {
-    // Handle form submission
-    console.log(data);
+  // Handle form submission
+  const handleFormSubmit = async (data) => {
+    if (initialData) {
+      // Update prompt logic
+      console.log("Updating prompt:", data);
+      // Implement your update logic here
+    } else {
+      // Add new prompt logic
+      console.log("Creating new prompt:", data);
+    }
     closeModal();
+  };
+
+  // Open the modal for editing an existing prompt
+  const handleEdit = (id) => {
+    const prompt = dummyPromptData.find((item) => item.sr_no === parseInt(id));
+    if (prompt) {
+      setInitialData(prompt);
+      setFormTitle("Edit Prompt");
+      openModal();
+    }
   };
 
   return (
@@ -25,18 +45,32 @@ const AdminPrompts = () => {
             className="border border-[#E2E8F0] text-sm outline-none p-1.5 rounded-md w-10/12"
             placeholder="Search by Name"
           />
-          <button className="bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold">
-            Search
-          </button>
-          <button
-            className="bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold"
-            onClick={openModal}
+          <div className="flex items-center gap-1 justify-center bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold">
+            <IoSearch size={20} />
+            <button
+              className={`primary text-base text-white text-nowrap font-semibold`}
+            >
+              Search
+            </button>
+          </div>
+          <div
+            className="flex items-center gap-1 justify-center bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold"
+            onClick={() => {
+              setInitialData(null); 
+              setFormTitle("Create New Prompt");
+              openModal();
+            }}
           >
-            Add new Prompt
-          </button>
+            <MdAdd size={20} />
+            <button
+              className={`primary text-base text-white text-nowrap font-semibold`}
+            >
+              Add Prompt
+            </button>
+          </div>
         </div>
         <div className="bg-white w-full rounded-lg flex flex-col p-5 gap-2">
-          <PromptsTable />
+          <PromptsTable onEdit={handleEdit} />
         </div>
         <Pagination />
       </div>
@@ -46,7 +80,7 @@ const AdminPrompts = () => {
         onSubmit={handleFormSubmit}
         title={formTitle}
       >
-        <PromptForm />
+        <PromptForm initialData={initialData} />
       </CustomModal>
     </div>
   );

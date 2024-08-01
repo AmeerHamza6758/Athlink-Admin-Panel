@@ -8,88 +8,122 @@ import Pagination from "../../pagination/Pagination";
 
 const PastEvents = () => {
   const navigate = useNavigate();
+  const handleEditClick = (event) => {
+    navigate(`/events/edit/${event.s_no}`, { state: { event } });
+  };
+
   return (
     <div className="flex flex-col">
       <div className="p-1.5 min-w-full inline-block align-middle">
-        <div className="overflow-hidden bg-white w-full rounded-lg flex flex-col p-5 gap-2">
+        <div className="overflow-x-scroll bg-white w-full rounded-lg flex flex-col p-5 gap-2">
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
               <tr>
                 <th
                   scope="col"
-                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                  className="py-3 px-4 text-start text-base font-bold text-secondaryText"
                 >
                   Sr_no
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                  className="py-3 px-4 text-start text-base font-bold text-secondaryText"
                 >
                   Title
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                  className="py-3 px-4 text-start text-base font-bold text-secondaryText"
                 >
                   Image
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-6 text-start px-6 text-base font-bold text-secondaryText"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                >
+                  Time
+                </th>
+                <th
+                  scope="col"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-6 text-start px-6 text-base font-bold text-secondaryText"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
                 >
-                  Location
+                  Battle
                 </th>
                 <th
                   scope="col"
-                  className="py-3 text-end pr-24 text-base font-bold text-secondaryText"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                >
+                  $Price
+                </th>
+                <th
+                  scope="col"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                >
+                  Address
+                </th>
+                <th
+                  scope="col"
+                  className="py-3 px-6 text-start text-base font-bold text-secondaryText"
+                >
+                  About
+                </th>
+                <th
+                  scope="col"
+                  className="py-3 pr-12 text-end text-base font-bold text-secondaryText"
                 >
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyEventsData.map((items, index) => (
+              {dummyEventsData.map((item, index) => (
                 <tr key={index}>
-                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.s_no}
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.s_no}
                   </td>
-                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.title}
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.title}
                   </td>
-                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    <img className="w-12 h-12 rounded-lg" src={items.image} alt="Events" />
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    <img
+                      className="w-12 h-12 rounded-lg"
+                      src={item.image}
+                      alt="Events"
+                    />
                   </td>
-                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.date}
+                  <td className="px-6 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.time}
                   </td>
-                  <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    {items.location}
+                  <td className="px-6 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.date}
                   </td>
-                  <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center justify-end">
+                  <td className="px-6 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.battle}
+                  </td>
+                  <td className="px-6 py-3 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                    {item.price}
+                  </td>
+                  <td className="px-6 py-3 whitespace-wrap text-sm font-normal text-darkGreyText">
+                    {item.address}
+                  </td>
+                  <td className="px-6 py-3">
+                    <p className="text-sm font-normal text-darkGreyText line-clamp-3">{item.about}</p>
+                  </td>
+                  <td className="px-6 py-3  text-sm font-normal text-darkGreyText flex flex-row gap-3 items-center justify-end">
                     <button className="h-9 w-9">
                       <img src={deleteIcon} alt="Delete Icon" />
                     </button>
                     <button
                       className="h-9 w-9"
-                      onClick={() => {
-                        navigate("/events");
-                      }}
+                      onClick={() => handleEditClick(item)}
                     >
                       <img src={editIcon} alt="Edit Icon" />
-                    </button>
-                    <button
-                      className="h-9 w-9"
-                      onClick={() => {
-                        navigate("/events");
-                      }}
-                    >
-                      <img src={viewIcon} alt="view Icon" />
                     </button>
                   </td>
                 </tr>

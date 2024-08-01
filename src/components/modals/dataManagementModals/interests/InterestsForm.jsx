@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useFormContext } from "react-hook-form";
 import { BsPencil } from "react-icons/bs";
 import toast from "react-hot-toast";
-import { FaRegUser } from "react-icons/fa";
+import { LuImagePlus } from "react-icons/lu";
 
-const InterestsForm = () => {
+const InterestsForm = ({initialData}) => {
   const [sportImage, setSportImage] = useState(null);
   const [backgroundPreview, setBackgroundPreview] = useState(null);
   const {
     register,
+    setValue,
+    reset,
     formState: { errors },
   } = useFormContext();
+
+  
+  useEffect(() => {
+    if (initialData) {
+      setValue("interest", initialData.interestName || "");
+      setValue("countryCode", initialData.image || "");
+    } else {
+      reset();
+    }
+  }, [initialData, setValue]);
 
   const handleEditFileChange = (event) => {
     const file = event.target.files[0];
@@ -78,7 +90,7 @@ const InterestsForm = () => {
               className="object-cover w-full h-full"
             />
           ) : (
-            <FaRegUser size={40} color="gray" />
+            <LuImagePlus   size={40} color="gray" />
           )}
         </div>
       </div>

@@ -1,19 +1,16 @@
 import React from "react";
-import { dummyPromptData  } from "../../../helpers/dummydata";
-import { useNavigate } from "react-router-dom";
+import { dummyPromptData } from "../../../helpers/dummydata";
 import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
-import viewIcon from "../../../assets/images/eyeIcon.png";
-const PromptsTable = () => {
-  const navigate = useNavigate();
 
+const PromptsTable = ({ onEdit }) => {
   return (
     <div className="flex flex-col">
       <div className="p-1.5 min-w-full inline-block align-middle">
         <div className="overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
-              <tr> 
+              <tr>
                 <th
                   scope="col"
                   className="py-3 px-6 text-start text-base font-bold text-secondaryText"
@@ -28,14 +25,14 @@ const PromptsTable = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3 text-end pr-24 text-base font-bold text-secondaryText"
+                  className="py-3 text-end pr-12 text-base font-bold text-secondaryText"
                 >
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyPromptData .map((items, index) => (
+              {dummyPromptData.map((items, index) => (
                 <tr key={index}>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
                     {items.sr_no}
@@ -50,18 +47,10 @@ const PromptsTable = () => {
                     <button
                       className="h-9 w-9"
                       onClick={() => {
-                        navigate("/");
+                        if (onEdit) onEdit(items.sr_no);
                       }}
                     >
                       <img src={editIcon} alt="Edit Icon" />
-                    </button>
-                    <button
-                      className="h-9 w-9"
-                      onClick={() => {
-                        navigate("/admin/prompt");
-                      }}
-                    >
-                      <img src={viewIcon} alt="view Icon" />
                     </button>
                   </td>
                 </tr>

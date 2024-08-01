@@ -1,9 +1,8 @@
 import React from "react";
-import { dummyCountryData } from "../../../helpers/dummydata";
+import { dummyCitiesData } from "../../../helpers/dummydata";
 import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
-
-const CountriesTable = ({onEdit}) => {
+function CitiesTable({ onEdit }) {
   return (
     <div className="flex flex-col">
       <div className="p-1.5 min-w-full inline-block align-middle">
@@ -21,13 +20,13 @@ const CountriesTable = ({onEdit}) => {
                   scope="col"
                   className="py-3 text-start px-6 text-base font-bold text-secondaryText"
                 >
-                  Country
+                  City Name
                 </th>
                 <th
                   scope="col"
                   className="py-3 text-start px-6 text-base font-bold text-secondaryText"
                 >
-                  Country Code
+                  Country Name
                 </th>
                 <th
                   scope="col"
@@ -38,16 +37,16 @@ const CountriesTable = ({onEdit}) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0]">
-              {dummyCountryData.map((items, index) => (
+              {dummyCitiesData.map((items, index) => (
                 <tr key={index}>
                   <td className="py-3 px-6 text-start text-sm font-normal text-darkGreyText whitespace-nowrap">
                     {items.s_no}
                   </td>
                   <td className="py-3 px-6 text-start text-sm font-normal text-darkGreyText whitespace-nowrap">
-                    {items.countryName}
+                    {items.citiesName}
                   </td>
                   <td className="py-3 px-6 text-start text-sm font-normal text-darkGreyText whitespace-nowrap">
-                    {items.countryCode}
+                    {items.country}
                   </td>
                   <td className="py-4 px-6 text-end text-sm font-normal text-darkGreyText whitespace-nowrap">
                     <div className="flex flex-row justify-end items-center gap-3">
@@ -57,7 +56,7 @@ const CountriesTable = ({onEdit}) => {
                       <button
                         className="h-9 w-9"
                         onClick={() => {
-                         if(onEdit) onEdit(items.s_no)
+                          if (onEdit) onEdit(items.s_no);
                         }}
                       >
                         <img src={editIcon} alt="Edit Icon" />
@@ -72,6 +71,6 @@ const CountriesTable = ({onEdit}) => {
       </div>
     </div>
   );
-};
+}
 
-export default CountriesTable;
+export default CitiesTable;

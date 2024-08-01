@@ -14,7 +14,7 @@ const Pagination = () => {
           <FaAngleLeft size={20} color="black" />
         </PaginationButton>
         <PaginationButton active={true}>
-          <p className="text-white text-lg font-medium">1</p>
+          <p className="text-primaryText text-lg font-medium">1</p>
         </PaginationButton>
         <PaginationButton>
           <p className="text-black text-lg font-medium">2</p>

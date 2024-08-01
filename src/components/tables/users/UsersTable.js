@@ -2,6 +2,8 @@ import React from "react";
 import { dummyUserData } from "../../../helpers/dummydata";
 import { useNavigate } from "react-router-dom";
 import viewIcon from "../../../assets/images/eyeIcon.png";
+import deleteIcon from "../../../assets/images/deleteIcon.png";
+import editIcon from "../../../assets/images/editIcon.png";
 const UsersTable = () => {
   const navigate = useNavigate();
   return (
@@ -22,7 +24,13 @@ const UsersTable = () => {
                     scope="col"
                     className={`px-6 py-3 text-start text-base font-bold text-secondaryText`}
                   >
-                    Email
+                    Email Address
+                  </th>
+                  <th
+                    scope="col"
+                    className={`px-6 py-3 text-start text-base font-bold text-secondaryText`}
+                  >
+                    Contact_no
                   </th>
                   <th
                     scope="col"
@@ -38,7 +46,7 @@ const UsersTable = () => {
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-base font-bold text-secondaryText"
+                    className="pr-28 text-end py-3 text-base font-bold text-secondaryText"
                   >
                     Action
                   </th>
@@ -54,19 +62,38 @@ const UsersTable = () => {
                       {item.email}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
+                      {item.contact_no}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
                       {item.country}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-darkGreyText">
                       {item.gender}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-normal text-darkGreyText flex flex-row gap-3 items-center justify-center">
+                    <td className="px-8 py-4 whitespace-nowrap text-center text-sm font-normal text-darkGreyText flex flex-row gap-3 items-center justify-end">
+                      <button
+                        className="h-9 w-9"
+                        onClick={() => {
+                          navigate("/users");
+                        }}
+                      >
+                        <img src={deleteIcon} alt="View Details" />
+                      </button>
+                      <button
+                        className="h-9 w-9"
+                        onClick={() => {
+                          navigate("/users");
+                        }}
+                      >
+                        <img src={editIcon} alt="Edit Icon" />
+                      </button>
                       <button
                         className="h-9 w-9"
                         onClick={() => {
                           navigate("/users/actions");
                         }}
                       >
-                        <img src={viewIcon} alt="View Details" />
+                        <img src={viewIcon} alt="Delete Icon" />
                       </button>
                     </td>
                   </tr>

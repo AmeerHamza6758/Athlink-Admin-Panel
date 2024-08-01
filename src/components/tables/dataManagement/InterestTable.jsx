@@ -1,11 +1,9 @@
 import React from "react";
 import { dummyInterest } from "../../../helpers/dummydata";
-import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../../assets/images/deleteIcon.png";
 import editIcon from "../../../assets/images/editIcon.png";
-import viewIcon from "../../../assets/images/eyeIcon.png";
-const InterestTable = () => {
-  const navigate = useNavigate();
+const InterestTable = ({ onEdit }) => {
+ 
   return (
     <div className="flex flex-col">
       <div className="p-1.5 min-w-full inline-block align-middle">
@@ -33,7 +31,7 @@ const InterestTable = () => {
                 </th>
                 <th
                   scope="col"
-                  className="py-3 text-end pr-24 text-base font-bold text-secondaryText"
+                  className="py-3 text-end pr-12 text-base font-bold text-secondaryText"
                 >
                   Actions
                 </th>
@@ -49,7 +47,11 @@ const InterestTable = () => {
                     {items.interestName}
                   </td>
                   <td className="py-3 text-start px-6 text-sm font-normal text-darkGreyText whitespace-nowrap text-center">
-                    <img className="w-12 h-12 rounded-lg" src={items.image} alt="Sports Icon" />
+                    <img
+                      className="w-12 h-12 rounded-lg"
+                      src={items.image}
+                      alt="Sports Icon"
+                    />
                   </td>
                   <td className="px-6 text-start py-4 whitespace-nowrap text-center text-sm font-normal flex flex-row gap-3 items-center justify-end">
                     <button className="h-9 w-9">
@@ -58,18 +60,10 @@ const InterestTable = () => {
                     <button
                       className="h-9 w-9"
                       onClick={() => {
-                        navigate("/");
+                        if (onEdit) onEdit(items.s_no);
                       }}
                     >
                       <img src={editIcon} alt="Edit Icon" />
-                    </button>
-                    <button
-                      className="h-9 w-9"
-                      onClick={() => {
-                        navigate("/");
-                      }}
-                    >
-                      <img src={viewIcon} alt="view Icon" />
                     </button>
                   </td>
                 </tr>

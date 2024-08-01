@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import Pagination from "../../../components/pagination/Pagination";
-import CountriesTable from "../../../components/tables/dataManagement/CountriesTable";
-import CustomModal from "../../../components/modals/customModal/CustomModal";
-import CountryForm from "../../../components/modals/dataManagementModals/countries/CountryForm";
-import useModal from "../../../helpers/hooks/useModal";
 import { MdAdd } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
-import { dummyCountryData } from "../../../helpers/dummydata";
-const AdminCountries = () => {
+import CitiesTable from "../../../components/tables/dataManagement/CitiesTable";
+import useModal from "../../../helpers/hooks/useModal";
+import Pagination from "../../../components/pagination/Pagination";
+import CustomModal from "../../../components/modals/customModal/CustomModal";
+import CitiesForm from "../../../components/modals/dataManagementModals/cities/CitiesForm";
+import { dummyCitiesData } from "../../../helpers/dummydata";
+
+function AdminCities() {
   const { isOpen, openModal, closeModal } = useModal();
-  const [formTitle, setFormTitle] = useState("Add New Country");
+  const [formTitle, setFormTitle] = useState("Add City");
   const [initialData, setInitialData] = useState(null);
+
 
   const handleFormSubmit = async (data) => {
     if (initialData) {
@@ -23,20 +25,23 @@ const AdminCountries = () => {
       // Implement your create logic here, e.g., API call
     }
     closeModal();
+    // Optional: Refresh the cities list
   };
 
+
   const handleEdit = (id) => {
-    const country = dummyCountryData.find((item) => item.s_no === parseInt(id));
-    if (country) {
-      setInitialData(country);
-      setFormTitle("Update Country");
+    const city = dummyCitiesData.find((item) => item.s_no === parseInt(id));
+    if (city) {
+      setInitialData(city);
+      setFormTitle("Update City");
       openModal();
     }
   };
+
   return (
     <div className="w-full h-auto flex justify-center items-center">
       <div className="w-11/12 pt-10 flex flex-col gap-4">
-        <h1 className="text-lg font-medium">Countries</h1>
+        <h1 className="text-lg font-medium">Cities</h1>
         <div className="bg-white h-16 w-full rounded-lg flex flex-row px-5 gap-4 items-center">
           <input
             className="border border-[#E2E8F0] text-sm outline-none p-1.5 rounded-md w-10/12"
@@ -53,8 +58,8 @@ const AdminCountries = () => {
           <div
             className="flex items-center gap-1 justify-center bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold"
             onClick={() => {
-              setInitialData(null)
-              setFormTitle("Add Country");
+              setInitialData(null);
+              setFormTitle("Add City");
               openModal();
             }}
           >
@@ -62,12 +67,12 @@ const AdminCountries = () => {
             <button
               className={`primary text-base text-white text-nowrap font-semibold`}
             >
-              Add Country
+              Add City
             </button>
           </div>
         </div>
         <div className="bg-white w-full rounded-lg flex flex-col p-5 gap-2">
-          <CountriesTable onEdit={handleEdit} />
+          <CitiesTable onEdit={handleEdit} />
         </div>
         <Pagination />
       </div>
@@ -77,10 +82,10 @@ const AdminCountries = () => {
         onSubmit={handleFormSubmit}
         title={formTitle}
       >
-        <CountryForm initialData={initialData} />
+        <CitiesForm initialData={initialData} />
       </CustomModal>
     </div>
   );
-};
+}
 
-export default AdminCountries;
+export default AdminCities;

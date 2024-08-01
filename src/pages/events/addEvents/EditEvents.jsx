@@ -1,23 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsPencil } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { LuImagePlus } from "react-icons/lu";
-import { useForm } from "react-hook-form";
 
-const AddEvents = () => {
+const EditEvents = () => {
   const navigate = useNavigate();
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    setValue,
-    watch,
-  } = useForm();
-
+  const location = useLocation();
   const [eventImage, setEventImage] = useState();
-  const backgroundPreview = watch("imagePreview");
+  const [backgroundPreview, setBackgroundPreview] = useState();
+  const [eventData, setEventData] = useState({
+    title: "",
+    time: "",
+    date: "",
+    battle: "",
+    price: "",
+    address: "",
+    about: "",
+  });
+
+  useEffect(() => {
+    if (location.state && location.state.event) {
+      const { event } = location.state;
+      setEventData({
+        title: event.title,
+        time: event.time,
+        date: event.date,
+        battle: event.battle,
+        price: event.price,
+        address: event.address,
+        about: event.about,
+      });
+      setBackgroundPreview(event.image);
+    }
+  }, [location.state]);
 
   const handleEditFileChange = (event) => {
     const file = event.target.files[0];
@@ -28,16 +45,26 @@ const AddEvents = () => {
       setEventImage(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setValue("imagePreview", reader.result);
+        setBackgroundPreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const onSubmit = (data) => {
-    // Handle form submission with data
-    console.log(data, eventImage);
-    toast.success("Event added successfully!");
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEventData({
+      ...eventData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add validation and submit logic here
+    console.log(eventData, eventImage);
+    toast.success("Event updated successfully!");
+    navigate(-1)
   };
 
   return (
@@ -54,7 +81,7 @@ const AddEvents = () => {
           </div>
         </div>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit}
           className="bg-white w-full h-auto rounded-lg flex flex-row px-8 py-12 justify-between items-start"
         >
           <div className="border border-[#E4774F] rounded-full p-1 w-48 h-48 relative">
@@ -85,27 +112,18 @@ const AddEvents = () => {
           </div>
           <div className="flex flex-col gap-6 w-9/12">
             <div className="flex flex-col gap-2">
-              <label
-                htmlFor="title"
-                className="text-xs font-semibold text-gray-700"
-              >
+              <label className="text-xs font-semibold text-gray-700">
                 Event Title
               </label>
               <input
                 type="text"
-                id="title"
-                {...register("title", {
-                  required: "Please enter event title.",
-                })}
+                name="title"
+                value={eventData.title}
+                onChange={handleInputChange}
                 className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                 placeholder="Enter Event Title"
                 aria-label="Event Title"
               />
-              {errors.title && (
-                <p className="text-primaryText text-xs font-semibold">
-                  {errors.title.message}
-                </p>
-              )}
             </div>
             <div className="flex gap-6">
               <div className="flex flex-col gap-2 flex-grow">
@@ -114,17 +132,12 @@ const AddEvents = () => {
                 </label>
                 <input
                   type="time"
-                  {...register("time", {
-                    required: "Please enter event time.",
-                  })}
+                  name="time"
+                  value={eventData.time}
+                  onChange={handleInputChange}
                   className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                   aria-label="Event Time"
                 />
-                {errors.time && (
-                  <p className="text-primaryText text-xs font-semibold">
-                    {errors.time.message}
-                  </p>
-                )}
               </div>
               <div className="flex flex-col gap-2 flex-grow">
                 <label className="text-xs font-semibold text-gray-700">
@@ -132,17 +145,12 @@ const AddEvents = () => {
                 </label>
                 <input
                   type="date"
-                  {...register("date", {
-                    required: "please enter event date.",
-                  })}
+                  name="date"
+                  value={eventData.date}
+                  onChange={handleInputChange}
                   className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                   aria-label="Event Date"
                 />
-                {errors.date && (
-                  <p className="text-primaryText text-xs font-semibold">
-                    {errors.date.message}
-                  </p>
-                )}
               </div>
             </div>
             <div className="flex gap-6">
@@ -152,16 +160,13 @@ const AddEvents = () => {
                 </label>
                 <input
                   type="text"
-                  {...register("battle", { required: "Please enter" })}
+                  name="battle"
+                  value={eventData.battle}
+                  onChange={handleInputChange}
                   className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                   placeholder="Enter Battle"
                   aria-label="Battle"
                 />
-                {errors.battle && (
-                  <p className="text-primaryText text-xs font-semibold">
-                    {errors.battle.message}
-                  </p>
-                )}
               </div>
               <div className="flex flex-col gap-2 flex-grow">
                 <label className="text-xs font-semibold text-gray-700">
@@ -169,18 +174,13 @@ const AddEvents = () => {
                 </label>
                 <input
                   type="number"
-                  {...register("price", {
-                    required: "Please enter Price of the event.",
-                  })}
+                  name="price"
+                  value={eventData.price}
+                  onChange={handleInputChange}
                   className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                   placeholder="Enter Price"
                   aria-label="Price"
                 />
-                {errors.price && (
-                  <p className="text-primaryText text-xs font-semibold">
-                    {errors.price.message}
-                  </p>
-                )}
               </div>
             </div>
             <div className="flex flex-col gap-2">
@@ -189,43 +189,34 @@ const AddEvents = () => {
               </label>
               <input
                 type="text"
-                {...register("address", {
-                  required: "Please enter complete address of the event.",
-                })}
+                name="address"
+                value={eventData.address}
+                onChange={handleInputChange}
                 className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                 placeholder="Enter Address"
                 aria-label="Address"
               />
-              {errors.address && (
-                <p className="text-primaryText text-xs font-semibold">
-                  {errors.address.message}
-                </p>
-              )}
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-xs font-semibold text-gray-700">
-                About
+                Description
               </label>
               <textarea
-                {...register("about", {
-                  required: "Please enter description of the event.",
-                })}
+              rows={5}
+                name="description"
+                value={eventData.about}
+                onChange={handleInputChange}
                 className="border border-[#E2E8F0] text-sm outline-none p-2.5 rounded-md w-full"
                 placeholder="Enter Description"
                 aria-label="Description"
               />
-              {errors.about && (
-                <p className="text-primaryText text-xs font-semibold">
-                  {errors.about.message}
-                </p>
-              )}
             </div>
             <div>
               <button
                 type="submit"
-                className="bg-primary text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-primaryHover transition duration-500 ease-in-out"
+                className="bg-secondary text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-darkGrey transition duration-500 ease-in-out"
               >
-                Submit
+                Save
               </button>
             </div>
           </div>
@@ -235,4 +226,4 @@ const AddEvents = () => {
   );
 };
 
-export default AddEvents;
+export default EditEvents;

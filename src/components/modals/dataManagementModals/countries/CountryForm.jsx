@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-const CountryForm = () => {
+const CountryForm = ({ initialData }) => {
   const {
     register,
+    setValue,
+    reset,
     formState: { errors },
   } = useFormContext();
+
+  useEffect(() => {
+    if (initialData) {
+      setValue("countryName", initialData.countryName || "");
+      setValue("countryCode", initialData.countryCode || "");
+    } else {
+      reset();
+    }
+  }, [initialData, setValue]);
+
   return (
     <div className="flex flex-col gap-4 w-full max-w-md mx-auto">
       <div className="flex flex-col gap-2">

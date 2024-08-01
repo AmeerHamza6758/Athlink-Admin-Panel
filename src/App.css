@@ -39,7 +39,14 @@ td{
   /* background-color: #C62839; */
   border-radius: 200px;
 }
-
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

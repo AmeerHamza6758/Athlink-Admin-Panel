@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from "react";
-import { colors } from "../../helpers/constants";
 import Pagination from "../../components/pagination/Pagination";
 import UsersTable from "../../components/tables/users/UsersTable";
+import { IoSearch } from "react-icons/io5";
+
 
 const Users = () => {
-  return(
-  <div className="w-full h-auto flex justify-center items-center">
+  return (
+    <div className="w-full h-auto flex justify-center items-center">
       <div className="w-11/12 h-auto pt-10 flex flex-col gap-4 ">
         <h1 className="text-base font-bold">User Management</h1>
         <div className="bg-white h-16 w-full rounded-lg flex flex-row px-5 gap-4 items-center">
@@ -13,11 +14,14 @@ const Users = () => {
             className="border border-[#E2E8F0] text-sm outline-none p-1.5 rounded-md w-11/12"
             placeholder="Search by Name"
           />
-          <button
-            className={`bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold`}
-          >
-            Search
-          </button>
+          <div className="flex items-center gap-1 justify-center bg-primary text-base text-white rounded-full hover:bg-primaryHover transition duration-300 ease-in-out text-nowrap py-1.5 px-6 font-semibold">
+            <IoSearch size={20} />
+            <button
+              className={`primary text-base text-white text-nowrap font-semibold`}
+            >
+              Search
+            </button>
+          </div>
         </div>
         <div className="bg-white w-full rounded-lg flex flex-col p-5 gap-2 ">
           <div>
@@ -29,6 +33,7 @@ const Users = () => {
         </Fragment>
       </div>
     </div>
-)};
+  );
+};
 
 export default Users;
